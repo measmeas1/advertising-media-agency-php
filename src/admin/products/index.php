@@ -26,7 +26,7 @@
         </nav>
     </aside>
 
-    <!-- MAIN CONTENT -->
+   <!-- MAIN CONTENT -->
     <main class="flex-1 p-6">
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold">Products List</h2>
