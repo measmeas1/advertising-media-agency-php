@@ -30,11 +30,12 @@
     <main class="flex-1 p-6">
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold">Products List</h2>
-            <button id="addProductBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                + Add Product
-            </button>
+            <button onclick="window.location.href='./create.php'" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+    + Add Product
+</button>
+
         </div>
-        
+
         <div class="bg-white p-6 rounded shadow">
             <table class="w-full text-left border-collapse">
                 <thead>
