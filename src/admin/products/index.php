@@ -29,9 +29,10 @@
     <main class="flex-1 p-6">
        <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold">Products List</h2>
-            <button onclick="window.location.href='./create.php'" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-    + Add Product
-</button>
+            <button onclick="openModal()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                + Add Product
+            </button>
+
 
         </div>
 
@@ -82,5 +83,29 @@
         </div>
     </main>
 </div>
+
+<!-- ADD PRODUCT MODAL -->
+<div id="addProductModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6 relative">
+        <!-- Close button -->
+        <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+
+        <!-- Include the create.php form -->
+        <?php include 'create.php'; ?>
+    </div>
+</div>
+
+
+<script>
+    function openModal() {
+        document.getElementById('addProductModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('addProductModal').classList.add('hidden');
+    }
+</script>
+
+
 </body>
 </html>
