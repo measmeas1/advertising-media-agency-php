@@ -20,7 +20,6 @@
         <nav class="space-y-4">
             <a href="../dashboard.php" class="block hover:bg-blue-800 p-3 rounded">Dashboard</a>
             <a href="index.php" class="block bg-blue-800 p-3 rounded">Products</a>
-            <a href="../product-details/index.php" class="block hover:bg-blue-800 p-3 rounded">Product Details</a>
             <a href="../categories/index.php" class="block hover:bg-blue-800 p-3 rounded">Categories</a>
             <a href="../bookings/index.php" class="block hover:bg-blue-800 p-3 rounded">Bookings</a>
         </nav>
@@ -28,11 +27,12 @@
 
    <!-- MAIN CONTENT -->
     <main class="flex-1 p-6">
-        <div class="flex justify-between items-center mb-4">
+       <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold">Products List</h2>
-            <button onclick="window.location.href='./create.php'" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-    + Add Product
-</button>
+            <button onclick="openModal()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                + Add Product
+            </button>
+
 
         </div>
 
@@ -41,45 +41,54 @@
                 <thead>
                     <tr class="bg-blue-500 text-white">
                         <th class="p-2 border">ID</th>
-                        <th class="p-2 border">Name</th>
-                        <th class="p-2 border">Category</th>
-                        <th class="p-2 border">Stock</th>
+                        <th class="p-2 border">Category ID</th>
+                        <th class="p-2 border">Title</th>
                         <th class="p-2 border">Price</th>
-                        <th class="p-2 border">Status</th>
+                        <th class="p-2 border">Description</th>
                         <th class="p-2 border">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="border-b hover:bg-gray-100">
                         <td class="p-2 border">1</td>
-                        <td class="p-2 border">Product A</td>
-                        <td class="p-2 border">Category 1</td>
-                        <td class="p-2 border">15</td>
+                        <td class="p-2 border">1234</td>
+                        <td class="p-2 border">computer</td>
                         <td class="p-2 border">$20</td>
-                        <td class="p-2 border text-green-600">Active</td>
+                        <td class="p-2 border">Good</td>
                         <td class="p-2 border space-x-2">
                             <button class="bg-blue-500 text-white px-2 py-1 rounded">Edit</button>
                             <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                         </td>
                     </tr>
-                    <tr class="border-b hover:bg-gray-100">
-                        <td class="p-2 border">2</td>
-                        <td class="p-2 border">Product B</td>
-                        <td class="p-2 border">Category 2</td>
-                        <td class="p-2 border">8</td>
-                        <td class="p-2 border">$35</td>
-                        <td class="p-2 border text-red-600">Out of Stock</td>
-                        <td class="p-2 border space-x-2">
-                            <button class="bg-blue-500 text-white px-2 py-1 rounded">Edit</button>
-                            <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                        </td>
-                    </tr>
-                    <!-- Add more rows as needed -->
+                   
                 </tbody>
             </table>
         </div>
     </main>
 </div>
+
+<!-- ADD PRODUCT MODAL -->
+<div id="addProductModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6 relative">
+        <!-- Close button -->
+        <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+
+        <!-- Include the create.php form -->
+        <?php include 'create.php'; ?>
+    </div>
+</div>
+
+
+<script>
+    function openModal() {
+        document.getElementById('addProductModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('addProductModal').classList.add('hidden');
+    }
+</script>
+
 
 </body>
 </html>

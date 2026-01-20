@@ -36,7 +36,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+<body class="min-h-screen flex items-center justify-center bg-gray-300 from-blue-500 to-purple-600">
 
     <div class="bg-white w-full max-w-md rounded-xl shadow-2xl px-10 py-12">
 

@@ -30,10 +30,8 @@ include('session.php');
         <nav class="space-y-4">
             <a href="dashboard.php" class="block bg-blue-800 p-3 rounded">Dashboard</a>
              <a href="products/index.php" class="block hover:bg-blue-800 p-3 rounded">Products</a>
-            <a href="product-details/index.php" class="block hover:bg-blue-800 p-3 rounded">Product Details</a>
             <a href="categories/index.php" class="block hover:bg-blue-800 p-3 rounded">Categories</a>
-
-    <a href="bookings/index.php" class="block hover:bg-blue-800 p-3 rounded">Bookings</a>
+            <a href="bookings/index.php" class="block hover:bg-blue-800 p-3 rounded">Bookings</a>
         </nav>
 
         <div class="mt-10 bg-blue-800 p-4 rounded text-center">
