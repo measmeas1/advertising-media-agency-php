@@ -1,5 +1,5 @@
 <?php
-   include("db_connect.php");
+   $pdo = require_once __DIR__ . '/../config/db.php';
    session_start();
    $error='';
    if($_SERVER["REQUEST_METHOD"] == "POST") {
