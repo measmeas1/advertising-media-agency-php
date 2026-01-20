@@ -63,13 +63,18 @@ $currentPage = 'categories';
                         <th class="p-2 border">ID</th>
                         <th class="p-2 border">Name</th>
                         <th class="p-2 border">Status</th>
+                        <th class="p-2 border">Active</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="hover:bg-gray-100">
                         <td class="p-2 border">1</td>
-                        <td class="p-2 border">computer</td>
-                        <td class="p-2 border text-red-600">Out of Stock</td>
+                        <td class="p-2 border">Computer</td>
+                        <td class="p-2 border text-red">Out Of Stock</td>
+                        <td class="p-2 border space-x-2">
+                            <button class="bg-blue-500 text-white px-2 py-1 rounded">Edit</button>
+                            <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
