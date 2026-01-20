@@ -1,3 +1,6 @@
+<?php
+include('session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +49,13 @@
             <div class="space-x-4">
                 <button>🔍</button>
                 <button>🔔</button>
-                <button>👤</button>
+                <button>
+        <select name="status" class=" p-2 border rounded w-full mb-3" required>
+            <option value="">👤</option>
+            <option value="Active" style="color:red;">Loyut</option>
+           
+        </select>
+                </button>
             </div>
         </div>
 
@@ -74,25 +83,7 @@
             </div>
         </div>
 
-        <!-- CHART + DOUGHNUT -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
 
-            <!-- LINE CHART -->
-            <div class="bg-white p-6 rounded shadow lg:col-span-2">
-                <h3 class="font-semibold mb-4">Audience Demographic</h3>
-                <canvas id="lineChart"></canvas>
-            </div>
-
-            <!-- DOUGHNUT CHART -->
-            <div class="bg-white p-6 rounded shadow">
-                <h3 class="font-semibold mb-4">Audience Demographic</h3>
-                <canvas id="pieChart"></canvas>
-                <div class="mt-4 text-sm">
-                    <p>Gross: <b>$2140</b></p>
-                    <p>Online: <b>$2058</b></p>
-                </div>
-            </div>
-        </div>
 
         <!-- TABLE -->
         <div class="bg-white p-6 rounded shadow">
