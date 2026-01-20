@@ -41,43 +41,26 @@
                 <thead>
                     <tr class="bg-blue-500 text-white">
                         <th class="p-2 border">ID</th>
-                        <th class="p-2 border">Name</th>
-                        <th class="p-2 border">Category</th>
-                        <th class="p-2 border">Product Details</th>
-                        <th class="p-2 border">Stock</th>
+                        <th class="p-2 border">Category ID</th>
+                        <th class="p-2 border">Title</th>
                         <th class="p-2 border">Price</th>
-                        <th class="p-2 border">Status</th>
+                        <th class="p-2 border">Description</th>
                         <th class="p-2 border">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="border-b hover:bg-gray-100">
                         <td class="p-2 border">1</td>
-                        <td class="p-2 border">Product A</td>
-                        <td class="p-2 border">Category 1</td>
-                        <td class="p-2 border">Phone</td>
-                        <td class="p-2 border">15</td>
+                        <td class="p-2 border">1234</td>
+                        <td class="p-2 border">computer</td>
                         <td class="p-2 border">$20</td>
-                        <td class="p-2 border text-green-600">Active</td>
+                        <td class="p-2 border">Good</td>
                         <td class="p-2 border space-x-2">
                             <button class="bg-blue-500 text-white px-2 py-1 rounded">Edit</button>
                             <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                         </td>
                     </tr>
-                    <tr class="border-b hover:bg-gray-100">
-                        <td class="p-2 border">2</td>
-                        <td class="p-2 border">Product B</td>
-                        <td class="p-2 border">Category 2</td>
-                        <td class="p-2 border">Computer</td>
-                        <td class="p-2 border">8</td>
-                        <td class="p-2 border">$35</td>
-                        <td class="p-2 border text-red-600">Out of Stock</td>
-                        <td class="p-2 border space-x-2">
-                            <button class="bg-blue-500 text-white px-2 py-1 rounded">Edit</button>
-                            <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                        </td>
-                    </tr>
-                    <!-- Add more rows as needed -->
+                   
                 </tbody>
             </table>
         </div>

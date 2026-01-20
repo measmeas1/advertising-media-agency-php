@@ -1,8 +1,8 @@
 <?php
-// For demonstration, sample bookings data (replace with DB fetch)
+
 $bookings = [
-    ['id'=>1, 'customer'=>'John Doe', 'product'=>'Product A', 'date'=>'2026-01-18', 'status'=>'Confirmed'],
-    ['id'=>2, 'customer'=>'Jane Smith', 'product'=>'Product B', 'date'=>'2026-01-19', 'status'=>'Pending'],
+    ['id'=>1, 'product_id'=>'Product A', 'customer_name'=>'meas', 'phone'=>'016998521','message'=>'hi', 'status'=>'Confirmed'],
+    
 ];
 ?>
 <!DOCTYPE html>
@@ -35,10 +35,6 @@ $bookings = [
     <main class="flex-1 p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold">Bookings List</h2>
-            <button onclick="openModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                + Booking
-            </button>
         </div>
 
         <div class="bg-white p-6 rounded shadow">
@@ -46,9 +42,10 @@ $bookings = [
                 <thead>
                     <tr class="bg-blue-500 text-white">
                         <th class="p-2 border">ID</th>
-                        <th class="p-2 border">Customer</th>
-                        <th class="p-2 border">Product</th>
-                        <th class="p-2 border">Date</th>
+                        <th class="p-2 border">Product ID</th>
+                        <th class="p-2 border">customer Name</th>
+                        <th class="p-2 border">Phone</th>
+                        <th class="p-2 border">Message</th>
                         <th class="p-2 border">Status</th>
                         <th class="p-2 border">Action</th>
                     </tr>
@@ -57,9 +54,10 @@ $bookings = [
                     <?php foreach($bookings as $booking): ?>
                     <tr class="border-b hover:bg-gray-100">
                         <td class="p-2 border"><?= $booking['id'] ?></td>
-                        <td class="p-2 border"><?= $booking['customer'] ?></td>
-                        <td class="p-2 border"><?= $booking['product'] ?></td>
-                        <td class="p-2 border"><?= $booking['date'] ?></td>
+                        <td class="p-2 border"><?= $booking['product_id'] ?></td>
+                        <td class="p-2 border"><?= $booking['customer_name'] ?></td>
+                        <td class="p-2 border"><?= $booking['phone'] ?></td>
+                        <td class="p-2 border"><?= $booking['message'] ?></td>
                         <td class="p-2 border">
                             <span class="px-2 py-1 rounded <?= $booking['status']=='Confirmed' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' ?>">
                                 <?= $booking['status'] ?>
