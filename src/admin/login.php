@@ -1,29 +1,35 @@
 <?php
-   $pdo = require_once __DIR__ . '/../config/db.php';
-   session_start();
-   $error='';
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-   
-      // username and password sent from form 
-      $myusername = mysqli_real_escape_string($conn,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
+session_start();
 
-      $sql = "SELECT * FROM users WHERE name = '$myusername' and password = '$mypassword'";
+$pdo = require_once __DIR__ . '/../config/db.php';
+$error = '';
 
-      $result = mysqli_query($conn,$sql);      
-      $row = mysqli_num_rows($result);      
-      $count = mysqli_num_rows($result);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-      if($count == 1) {
-	  
-         // session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-         header("location: dashboard.php");
-      } else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
+    $email = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+
+    if ($email && $password) {
+
+        $stmt = $pdo->prepare("SELECT id, name, email, password FROM users WHERE email = :email LIMIT 1");
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch();
+
+        // Check password
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['login_user'] = $user['name'];
+            $_SESSION['user_id'] = $user['id'];
+
+            header('Location: dashboard.php');
+            exit;
+        } else {
+            $error = "Your Login Email or Password is invalid";
+        }
+    }
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,15 +51,18 @@
         </h2>
 
         <!-- Error message -->
-        <p id="errorMsg" class="hidden text-red-500 text-sm mb-4 text-center">
-            Invalid email or password
-        </p>
+        <?php if (!empty($error)): ?>
+            <p class="text-red-500 text-sm mb-4 text-center">
+                <?= htmlspecialchars($error) ?>
+            </p>
+        <?php endif; ?>
 
-        <form action = "" method = "post" class="space-y-6">
+
+        <form method="post" class="space-y-6">
             <!-- Email -->
             <div>
                 <input
-                   name="username" placeholder="Email" required class="w-full border-0 border-b-2 border-gray-300 focus:border-purple-600 focus:ring-0 px-1 py-2 text-gray-700 placeholder-gray-400"
+                   name="email" placeholder="Email" required class="w-full border-0 border-b-2 border-gray-300 focus:border-purple-600 focus:ring-0 px-1 py-2 text-gray-700 placeholder-gray-400"
                 >
             </div>
 
