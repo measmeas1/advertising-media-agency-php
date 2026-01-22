@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
     <main class="flex-1 p-6">
        <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold">Products List</h2>
-            <button onclick="openModal()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            <button onclick="openModal()" name="save" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                 + Add Product
             </button>
 
@@ -60,9 +61,45 @@
                             <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                         </td>
                     </tr>
-                   
-                </tbody>
+                </tbody>   
+                <tbody>
+                    
+                        <?php
+                     include_once('config.php');
+
+                    $sql = "SELECT * FROM products";
+                    $retval = mysqli_query($conn, $sql);
+
+                    while ($row = mysqli_fetch_assoc($retval)) {
+                        ?>
+                        <tr class="border-b hover:bg-gray-100">
+                        <td class="p-2 border"><?php echo $row['id']; ?></td>
+                        <td class="p-2 border"><?php echo $row['category_id'];?></td>
+                        <td class="p-2 border"><?php echo $row['title'];?></td>
+                        <td class="p-2 border"><?php echo $row['price'];?></td>
+                        <td class="p-2 border"><?php echo $row['description'];?></td>
+                        <td class="p-2 border space-x-2">
+                           <button
+                                onclick="window.location.href='edit.php?id=<?= $row['id'] ?>'"
+                                class="bg-blue-500 text-white px-2 py-1 rounded">
+                                Edit
+                            </button>
+                            <button
+                                onclick="window.location.href='delete.php?id=<?= $row['id'] ?>'"
+                                class="bg-red-500 text-white px-2 py-1 rounded">
+                                Delete
+                            </button>
+
+                           
+                        </td>
+                    <?php
+                    }
+                     ?>
+                        
+                    </tr>
+                <tbody>   
             </table>
+     
         </div>
     </main>
 </div>
@@ -74,7 +111,9 @@
         <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl">&times;</button>
 
         <!-- Include the create.php form -->
-        <?php include 'create.php'; ?>
+         <?php
+             include 'create.php';
+         ?>
     </div>
 </div>
 

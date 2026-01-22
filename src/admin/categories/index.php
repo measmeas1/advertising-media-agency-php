@@ -1,6 +1,5 @@
 <?php
-// SET ACTIVE PAGE
-$currentPage = 'categories';
+include 'config your database'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,17 +65,30 @@ $currentPage = 'categories';
                         <th class="p-2 border">Active</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="hover:bg-gray-100">
-                        <td class="p-2 border">1</td>
-                        <td class="p-2 border">Computer</td>
-                        <td class="p-2 border text-red">Out Of Stock</td>
+              <tbody>
+                    
+                        <?php
+                     include_once('config.php');
+
+                    $sql = "SELECT * FROM categories";
+                    $retval = mysqli_query($conn, $sql);
+
+                    while ($row = mysqli_fetch_assoc($retval)) {
+                        ?>
+                        <tr class="border-b hover:bg-gray-100">
+                        <td class="p-2 border"><?php echo $row['id']; ?></td>
+                        <td class="p-2 border"><?php echo $row['name'];?></td>
+                        <td class="p-2 border"><?php echo $row['status'];?></td>
                         <td class="p-2 border space-x-2">
                             <button class="bg-blue-500 text-white px-2 py-1 rounded">Edit</button>
                             <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                         </td>
+                    <?php
+                    }
+                     ?>
+                        
                     </tr>
-                </tbody>
+                <tbody> 
             </table>
         </div>
     </main>

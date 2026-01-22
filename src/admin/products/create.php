@@ -1,27 +1,25 @@
 <?php
+include 'config your database'; 
 
-include '../config.php'; 
-
-
-if(isset($_POST['save'])) {
+if (isset($_POST['save'])) {
     $category_id = $_POST['category_id'];
     $title = $_POST['title'];
     $price = $_POST['price'];
     $description = $_POST['description'];
-   
 
-    // Insert into database
-    $query = "INSERT INTO products (category_id, title, price, description) VALUES ('$category_id','$title','$price','$description')";
+   $query = "INSERT INTO products (category_id, title, price, description) 
+          VALUES ('$category_id','$title','$price','$description')";
     $result = mysqli_query($conn, $query);
 
-    if($result){
+    if ($result) {
         header("Location: index.php");
         exit();
     } else {
-        echo "Error: ". mysqli_error($conn);
+        echo "Error: " . mysqli_error($conn);
     }
 }
 ?>
+
 
 <!-- FORM UI ONLY -->
 <h2 class="text-2xl font-semibold mb-4">Add New Product</h2>
