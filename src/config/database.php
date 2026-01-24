@@ -1,11 +1,10 @@
 <?php
 $host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "ad_agency_db";
-$port = "3307";
+$host_user = "root";
+$psw = "123456";
+$db = "ad_agency_db";
 
-$conn = mysqli_connect($host, $user, $pass, $db, $port);
+$conn = mysqli_connect($host, $host_user, $psw, $db);
 
 if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
