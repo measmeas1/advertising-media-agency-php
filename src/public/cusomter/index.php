@@ -68,10 +68,9 @@
                         $
                         <?= $row['price'] ?>
                     </p>
-
-                    <button class="mt-6 w-full bg-black text-white py-3 rounded-lg">
-                        View Details →
-                    </button>
+                    <a href="service-details.php?id=<?= $row['id'] ?>" class="block text-center">
+                        <button class="mt-6 w-full bg-black text-white py-3 rounded-lg">View Details</button>
+                    </a>
 
                 </div>
             <?php endwhile; ?>
