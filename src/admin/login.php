@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+$pdo = require_once __DIR__ . '/../config/db.php';
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $email = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+
+    if ($email && $password) {
+
+        $stmt = $pdo->prepare("SELECT id, name, email, password FROM users WHERE email = :email LIMIT 1");
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch();
+
+        // Check password
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['login_user'] = $user['name'];
+            $_SESSION['user_id'] = $user['id'];
+
+            header('Location: dashboard.php');
+            exit;
+        } else {
+            $error = "Your Login Email or Password is invalid";
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,44 +51,31 @@
         </h2>
 
         <!-- Error message -->
-        <p id="errorMsg" class="hidden text-red-500 text-sm mb-4 text-center">
-            Invalid email or password
-        </p>
+        <?php if (!empty($error)): ?>
+            <p class="text-red-500 text-sm mb-4 text-center">
+                <?= htmlspecialchars($error) ?>
+            </p>
+        <?php endif; ?>
 
-        <form id="loginForm" class="space-y-6">
+
+        <form method="post" class="space-y-6">
             <!-- Email -->
             <div>
                 <input
-                    type="email"
-                    id="email"
-                    placeholder="Email"
-                    required
-                    class="w-full border-0 border-b-2 border-gray-300 focus:border-purple-600 focus:ring-0 px-1 py-2 text-gray-700 placeholder-gray-400"
+                   name="email" placeholder="Email" required class="w-full border-0 border-b-2 border-gray-300 focus:border-purple-600 focus:ring-0 px-1 py-2 text-gray-700 placeholder-gray-400"
                 >
             </div>
 
             <!-- Password -->
             <div>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    required
-                    class="w-full border-0 border-b-2 border-gray-300 focus:border-purple-600 focus:ring-0 px-1 py-2 text-gray-700 placeholder-gray-400"
-                >
+                <input type="password" name="password" id="password"placeholder="Password" required class="w-full border-0 border-b-2 border-gray-300 focus:border-purple-600 focus:ring-0 px-1 py-2 text-gray-700 placeholder-gray-400" >
             </div>
 
             <!-- Button -->
-            <button
-                type="submit"
-                class="w-full mt-6 py-3 rounded-md text-white font-medium
-                       bg-gradient-to-r from-blue-500 to-purple-600
-                       hover:opacity-90 transition"
-            >
+            <button type="submit"  class="w-full mt-6 py-3 rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-600 hover:opacity-90 transition">
                 Login
             </button>
         </form>
-
         <!-- Links -->
         <div class="text-center text-sm text-gray-600 mt-8 space-y-2">
             <p>
@@ -74,22 +93,6 @@
 
     </div>
 
-    <!-- JS -->
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            // Demo login (replace with PHP later)
-            if (email === 'admin@example.com' && password === 'admin123') {
-                window.location.href = 'dashboard.php';
-            } else {
-                document.getElementById('errorMsg').classList.remove('hidden');
-            }
-        });
-    </script>
 
 </body>
 </html>

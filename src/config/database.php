@@ -1,12 +1,20 @@
 <?php
-$host = "localhost";
-$host_user = "root";
-$psw = "123456";
-$db = "ad_agency_db";
 
-$conn = mysqli_connect($host, $host_user, $psw, $db);
+function env($key, $default = null)
+{
+    static $env;
 
-if (!$conn) {
-    die("Database connection failed: " . mysqli_connect_error());
+    if (!$env) {
+        $env = parse_ini_file(__DIR__ . '/../../.env');
+    }
+
+    return $env[$key] ?? $default;
 }
-?>
+
+return [
+    'host' => env('DB_HOST', '127.0.0.1'),
+    'port' => env('DB_PORT', '3306'),
+    'dbname' => env('DB_NAME'),
+    'user' => env('DB_USER'),
+    'pass' => env('DB_PASS'),
+];
