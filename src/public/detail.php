@@ -133,10 +133,35 @@
           </div>
         </div>
 
+        <!-- HOW IT WORKS -->
+        <div class="bg-white p-6 rounded-xl border">
+          <h2 class="font-semibold text-lg mb-4">How It Works</h2>
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-medium">Step 1: Submit Your Request</h3>
+              <p class="text-sm text-gray-600">
+                Click "Book Advertisement" to fill out the booking form.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-medium">Step 2: Our Team Reviews</h3>
+              <p class="text-sm text-gray-600">
+                We’ll contact you within 24 hours.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-medium">Step 3: Project Kickoff</h3>
+              <p class="text-sm text-gray-600">
+                Once approved, we begin your campaign.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- SIDEBAR -->
-      <div>
+      <div class="space-y-6">
         <div class="sticky top-24 bg-white border rounded-xl p-6 shadow-sm">
           <p class="text-2xl font-bold">$<?= number_format($service['price'], 2) ?></p>
           <p class="text-sm text-gray-500 mb-4"><?= htmlspecialchars($service['category']) ?></p>
@@ -150,9 +175,22 @@
             Login required to book.
           </p>
         </div>
+
+        <!-- NEW SECTION YOU CAN ADD -->
+        <div class="bg-white border rounded-xl p-6 shadow-sm">
+          <h2 class="font-semibold text-lg mb-3">Why Choose Us?</h2>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>Professional ad design</li>
+            <li>Targeted audience strategy</li>
+            <li>Fast delivery</li>
+            <li>Real-time report</li>
+          </ul>
+        </div>
+
       </div>
 
     </div>
   </div>
 </body>
 </html>
+
