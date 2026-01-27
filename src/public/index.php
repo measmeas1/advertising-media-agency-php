@@ -48,7 +48,7 @@
 </head>
 
 <body class="bg-gray-50">
-    <div class="flex justify-around items-center gap-4 px-6 py-4 bg-white shadow-sm">
+    <div class="flex justify-around items-center gap-4 px-6 py-4 bg-white shadow-sm fixed top-0 w-full">
         <div class="flex items-center">
             <img src="../assets/images/logo.png" alt="logo" width="50" height="50">
             <a href="index.php" class="text-xl font-bold text-black">
@@ -85,7 +85,7 @@
       </div>
     <?php unset($_SESSION['success']); endif; ?>
 
-    <div class="max-w-7xl mx-auto px-4 py-10">
+    <div class="max-w-7xl mx-auto px-4 py-10 mt-20">
         <h1 class="text-3xl font-bold">Our Advertising Services</h1>
         <p class="text-gray-500 mt-2">
             Choose from our wide range of advertising solutions to grow your business
