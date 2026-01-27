@@ -1,6 +1,39 @@
 <?php
-    require_once __DIR__ . '/service/index.php';
     session_start();
+    $pdo = require_once __DIR__ . '/../config/db.php';
+
+    $search = $_GET['search'] ?? '';
+    $category = $_GET['category'] ?? 'All';
+
+    $sql = "
+        SELECT 
+            products.id,
+            products.title,
+            products.description,
+            products.price,
+            categories.name AS category
+        FROM products
+        JOIN categories ON products.category_id = categories.id
+        WHERE products.title LIKE :search
+    ";
+
+    $params = [
+        ':search' => "%$search%"
+    ];
+
+    if ($category !== 'All') {
+        $sql .= " AND categories.name = :category";
+        $params[':category'] = $category;
+    }
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+
+    $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $catStmt = $pdo->query("SELECT name FROM categories WHERE status='active'");
+    $catRows = $catStmt->fetchAll();
+
     $user = $_SESSION['user'] ?? null;
 ?>
 
@@ -27,6 +60,11 @@
                 <span class="text-lg text-gray-600">
                     Welcome, <strong><?= htmlspecialchars($user['name']) ?></strong>
                 </span>
+                <a href="booking_list.php"
+                    class="px-4 py-2 border rounded-lg hover:bg-black hover:text-white">
+                    My Bookings
+                </a>
+
                 
                 <button onclick="openLogoutModal()"
                 class="bg-red-500 text-white font-bold px-4 py-2 rounded-lg hover:bg-red-600 transition">
