@@ -28,5 +28,9 @@ if ($category !== 'All') {
 $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 
-$result = $stmt;
+$services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$catStmt = $pdo->query("SELECT name FROM categories WHERE status='active'");
+$catRows = $catStmt->fetchAll();
+
 ?>
