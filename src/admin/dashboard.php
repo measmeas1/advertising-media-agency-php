@@ -6,14 +6,12 @@ include('session.php');
 <head>
     <head>
     <meta charset="UTF-8">
-    <title>Dasboard</title>
+    <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Tailwind CSS -->
     <link href="../assets/css/tailwind.csss" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
-     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -47,12 +45,10 @@ include('session.php');
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold">Dashboard</h2>
             <div class="space-x-4">
-                <button>🔍</button>
-                <button>🔔</button>
                 <button>
         <select name="status" class=" p-2 border rounded w-full mb-3" required>
             <option value="">👤</option>
-            <option value="Active" style="color:red;">Loyut</option>
+            <option value="Active" style="color:red;">Logout</option>
            
         </select>
                 </button>
