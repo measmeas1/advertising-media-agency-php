@@ -1,5 +1,7 @@
 <?php
-    require_once __DIR__ . '/services.php';
+    require_once __DIR__ . '/service/index.php';
+    $catStmt = $pdo->query("SELECT name FROM categories WHERE status='active'");
+    $catRows = $catStmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Advertising Services</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -28,22 +31,14 @@
 
         <!-- Categories -->
         <div class="flex flex-wrap gap-2 mt-6">
-            <?php
-            $categories = [
-                'All',
-                'Social Media Marketing',
-                'Content Creation',
-                'Brand Strategy',
-                'Digital Marketing',
-                'Video Production',
-                'PR & Events'
-            ];
+            <a href="?category=All" class="px-4 py-2 rounded-full border hover:bg-black hover:text-white transition">
+                All
+            </a>
 
-            foreach ($categories as $cat):
-                ?>
-                <a href="?category=<?= $cat ?>"
-                    class="px-4 py-2 rounded-full border hover:bg-black hover:text-white transition">
-                    <?= $cat ?>
+            <?php foreach ($catRows as $cat): ?>
+               <a href="?category=<?= urlencode($cat['name']) ?>"
+                   class="px-4 py-2 rounded-full border hover:bg-black hover:text-white transition">
+                    <?= $cat['name'] ?>
                 </a>
             <?php endforeach; ?>
         </div>
@@ -60,7 +55,7 @@
                     </h3>
 
                     <span class="inline-block bg-gray-100 text-sm px-3 py-1 rounded-full mt-2">
-                        <?= $row['category_id'] ?>
+                        <?= $row['category'] ?>
                     </span>
 
                     <p class="text-gray-600 mt-4">
@@ -71,7 +66,7 @@
                         $
                         <?= $row['price'] ?>
                     </p>
-                    <a href="service-details.php?id=<?= $row['id'] ?>" class="block text-center">
+                    <a href="detail.php?id=<?= $row['id'] ?>" class="block text-center">
                         <button class="mt-6 w-full bg-black text-white py-3 rounded-lg">View Details</button>
                     </a>
 
