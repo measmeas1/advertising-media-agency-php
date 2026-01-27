@@ -67,14 +67,14 @@
 
                 
                 <button onclick="openLogoutModal()"
-                class="bg-red-500 text-white font-bold px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                Logout
-            </button>
-            <?php else: ?>
-                <a href="login.php"
-                class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
-                Login
-            </a>
+                    class="bg-red-500 text-white font-bold px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                    Logout
+                </button>
+                <?php else: ?>
+                    <a href="login.php"
+                    class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                    Login
+                </a>
             <?php endif; ?>
         </div>
     </div>
