@@ -174,11 +174,8 @@
           <p class="text-xs text-gray-500 text-center mt-3">
             Login required to book.
           </p>
-        </div>
-
-        <!-- NEW SECTION YOU CAN ADD -->
-        <div class="bg-white border rounded-xl p-6 shadow-sm">
-          <h2 class="font-semibold text-lg mb-3">Why Choose Us?</h2>
+          
+          <h2 class="font-semibold text-lg mb-3 mt-6">Why Choose Us?</h2>
           <ul class="list-disc list-inside text-gray-700">
             <li>Professional ad design</li>
             <li>Targeted audience strategy</li>
@@ -186,7 +183,6 @@
             <li>Real-time report</li>
           </ul>
         </div>
-
       </div>
 
     </div>
