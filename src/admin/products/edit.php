@@ -142,8 +142,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div>
         <label class="font-medium">Product Image</label>
         <?php if (!empty($details['image_url'])): ?>
-            <img src="/../../public/assets/images/products/<?= htmlspecialchars($details['image_url']) ?>"
-                 alt="Current Image" class="w-48 h-48 object-cover mb-2 border rounded">
+            <img src="../../assets/images/products/<?= htmlspecialchars($details['image_url']) ?>"
+                 alt="Current Image" class="w-full h-48 object-cover mb-2 border rounded">
         <?php endif; ?>
         <input type="file" name="image" accept="image/*" class="w-full border p-2 rounded">
         <p class="text-sm text-gray-500 mt-1">Leave empty to keep current image.</p>

@@ -65,7 +65,7 @@
         <!-- IMAGE HERO -->
         <div class="rounded-xl overflow-hidden border bg-white shadow-sm">
           <?php if (!empty($service['image_url'])): ?>
-            <img src="<?= htmlspecialchars($service['image_url']) ?>"
+            <img src="../assets/images/products/<?= htmlspecialchars($service['image_url']) ?>"
                  class="w-full h-64 object-cover"
                  alt="<?= htmlspecialchars($service['title']) ?>">
           <?php else: ?>
