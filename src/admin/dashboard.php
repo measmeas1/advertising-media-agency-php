@@ -9,7 +9,6 @@ include('session.php');
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="../assets/css/tailwind.csss" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -46,11 +45,10 @@ include('session.php');
             <h2 class="text-2xl font-semibold">Dashboard</h2>
             <div class="space-x-4">
                 <button>
-        <select name="status" class=" p-2 border rounded w-full mb-3" required>
-            <option value="">👤</option>
-            <option value="Active" style="color:red;">Logout</option>
-           
-        </select>
+                <a href="logout.php"
+                  class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                  Logout
+                </a>
                 </button>
             </div>
         </div>
