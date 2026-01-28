@@ -1,10 +1,45 @@
 <?php
+    $pdo = require_once __DIR__ . '/../../config/db.php';
 
-$bookings = [
-    ['id'=>1, 'product_id'=>'Product A', 'customer_name'=>'meas', 'phone'=>'016998521','message'=>'hi', 'status'=>'Confirmed'],
-    
-];
+     /* UPDATE STATUS */
+     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['booking_id'], $_POST['payment_status'])) {
+        $update = $pdo->prepare("
+            UPDATE bookings 
+            SET payment_status = ? 
+            WHERE id = ?
+        ");
+        $update->execute([
+        $_POST['payment_status'],
+        $_POST['booking_id']
+        ]);
+    }
+
+    /* DELETE BOOKING */
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_booking_id'])) {
+        $delete = $pdo->prepare("DELETE FROM bookings WHERE id = ?");
+        $delete->execute([$_POST['delete_booking_id']]);
+    }
+
+
+    $sql = "
+        SELECT 
+            bookings.id,
+            products.title AS product_title,
+            bookings.name,
+            bookings.email,
+            bookings.phone,
+            bookings.message,
+            bookings.payment_status
+        FROM bookings
+        JOIN products ON bookings.product_id = products.id
+        ORDER BY bookings.id ASC
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +47,7 @@ $bookings = [
     <title>Bookings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Tailwind CSS -->
-      <link href="../assets/css/tailwind.css" rel="stylesheet">
+    <link href="../assets/css/tailwind.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -42,8 +76,9 @@ $bookings = [
                 <thead>
                     <tr class="bg-blue-500 text-white">
                         <th class="p-2 border">ID</th>
-                        <th class="p-2 border">Product ID</th>
-                        <th class="p-2 border">customer Name</th>
+                        <th class="p-2 border">Product</th>
+                        <th class="p-2 border">Name</th>
+                        <th class="p-2 border">Email</th>
                         <th class="p-2 border">Phone</th>
                         <th class="p-2 border">Message</th>
                         <th class="p-2 border">Status</th>
@@ -51,21 +86,68 @@ $bookings = [
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($bookings as $booking): ?>
+                    <?php foreach ($bookings as $booking): ?>
                     <tr class="border-b hover:bg-gray-100">
                         <td class="p-2 border"><?= $booking['id'] ?></td>
-                        <td class="p-2 border"><?= $booking['product_id'] ?></td>
-                        <td class="p-2 border"><?= $booking['customer_name'] ?></td>
-                        <td class="p-2 border"><?= $booking['phone'] ?></td>
-                        <td class="p-2 border"><?= $booking['message'] ?></td>
+                    
                         <td class="p-2 border">
-                            <span class="px-2 py-1 rounded <?= $booking['status']=='Confirmed' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' ?>">
-                                <?= $booking['status'] ?>
-                            </span>
+                            <?= htmlspecialchars($booking['product_title']) ?>
                         </td>
+                    
                         <td class="p-2 border">
-                            <a href="view.php?id=<?= $booking['id'] ?>" 
-                               class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">View</a>
+                            <?= htmlspecialchars($booking['name']) ?>
+                        </td>
+
+                        <td class="p-2 border">
+                            <?= htmlspecialchars($booking['email']) ?>
+                        </td>
+                    
+                        <td class="p-2 border">
+                            <?= htmlspecialchars($booking['phone']) ?>
+                        </td>
+                    
+                        <td class="p-2 border">
+                            <?= htmlspecialchars($booking['message']) ?>
+                        </td>
+                    
+                        <td class="p-2 border">
+                            <form method="POST">
+                                <input type="hidden" name="booking_id" value="<?= $booking['id'] ?>">
+
+                                <select name="payment_status"
+                                        onchange="this.form.submit()"
+                                        class="px-2 py-1 rounded text-sm border
+                                        <?php
+                                            echo match ($booking['payment_status']) {
+                                                'Paid' => 'bg-green-100 text-green-700',
+                                                'Partial' => 'bg-yellow-100 text-yellow-700',
+                                                'Cancelled' => 'bg-red-100 text-red-700',
+                                                default => 'bg-gray-100 text-gray-700',
+                                            };
+                                        ?>">
+                                    <option value="Pending" <?= $booking['payment_status']=='Pending'?'selected':'' ?>>Pending</option>
+                                    <option value="Paid" <?= $booking['payment_status']=='Paid'?'selected':'' ?>>Paid</option>
+                                    <option value="Partial" <?= $booking['payment_status']=='Partial'?'selected':'' ?>>Partial</option>
+                                    <option value="Cancelled" <?= $booking['payment_status']=='Cancelled'?'selected':'' ?>>Cancelled</option>
+                                </select>
+                            </form>
+                        </td>
+                            
+                        <td class="p-2 border flex gap-2">
+                            <a href="view.php?id=<?= $booking['id'] ?>"
+                               class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center gap-1">
+                                View
+                            </a>
+
+                            <!-- DELETE -->
+                            <form method="POST"
+                                  onsubmit="return confirm('Are you sure you want to delete this booking?');">
+                                <input type="hidden" name="delete_booking_id" value="<?= $booking['id'] ?>">
+                                <button type="submit"
+                                        class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 flex items-center gap-1">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -74,6 +156,5 @@ $bookings = [
         </div>
     </main>
 </div>
-
 </body>
 </html>
