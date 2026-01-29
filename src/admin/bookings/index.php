@@ -59,6 +59,7 @@
         <h1 class="text-2xl font-bold mb-8">LOGO</h1>
         <nav class="space-y-4">
             <a href="../dashboard.php" class="block p-3 rounded hover:bg-blue-800">Dashboard</a>
+            <a href="../customers/index.php" class="block p-3 rounded hover:bg-blue-800">Customers</a>
             <a href="../products/index.php" class="block p-3 rounded hover:bg-blue-800">Products</a>
             <a href="../categories/index.php" class="block p-3 rounded hover:bg-blue-800">Categories</a>
             <a href="index.php" class="block p-3 rounded bg-blue-800">Bookings</a>

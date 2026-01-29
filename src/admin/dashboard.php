@@ -40,7 +40,7 @@ $userListStmt = $pdo->query("
     INNER JOIN bookings b ON b.user_id = u.id
     WHERE 
         u.role = 'user'
-    ORDER BY b.created_at DESC
+    ORDER BY b.created_at ASC
     LIMIT 10
 ");
 $users = $userListStmt->fetchAll(PDO::FETCH_ASSOC);
@@ -65,6 +65,7 @@ $users = $userListStmt->fetchAll(PDO::FETCH_ASSOC);
         <h1 class="text-2xl font-bold mb-8">LOGO</h1>
         <nav class="space-y-4 flex-1">
             <a href="dashboard.php" class="block p-3 rounded hover:bg-blue-800 bg-blue-800">Dashboard</a>
+            <a href="customers/index.php" class="block p-3 rounded hover:bg-blue-800">Customers</a>
             <a href="products/index.php" class="block p-3 rounded hover:bg-blue-800">Products</a>
             <a href="categories/index.php" class="block p-3 rounded hover:bg-blue-800">Categories</a>
             <a href="bookings/index.php" class="block p-3 rounded hover:bg-blue-800">Bookings</a>
@@ -114,13 +115,14 @@ $users = $userListStmt->fetchAll(PDO::FETCH_ASSOC);
             <table class="w-full text-left border-collapse">
                 <thead>
                 <tr class="bg-blue-500 text-white">
-                    <th class="p-2">ID</th>
-                    <th class="p-2">Name</th>
-                    <th class="p-2">Email</th>
-                    <th class="p-2">Phone</th>
-                    <th class="p-2">Price</th>
-                    <th class="p-2">Date</th>
-                    <th class="p-2">Payment</th>
+                    <th class="p-2 border">NO</th>
+                    <th class="p-2 border">ID</th>
+                    <th class="p-2 border">Name</th>
+                    <th class="p-2 border">Email</th>
+                    <th class="p-2 border">Phone</th>
+                    <th class="p-2 border">Price</th>
+                    <th class="p-2 border">Date</th>
+                    <th class="p-2 border">Payment</th>
                 </tr>
                 </thead>
 
@@ -133,15 +135,16 @@ $users = $userListStmt->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                 <?php endif; ?>
 
-                <?php foreach ($users as $u): ?>
+                <?php foreach ($users as $index => $u): ?>
                     <tr class="border-b hover:bg-gray-50">
-                        <td class="p-2"><?= $u['id'] ?></td>
-                        <td class="p-2"><?= htmlspecialchars($u['name']) ?></td>
-                        <td class="p-2"><?= htmlspecialchars($u['email']) ?></td>
-                        <td class="p-2"><?= htmlspecialchars($u['phone'] ?? '-') ?></td>
-                        <td class="p-2"><?= htmlspecialchars($u['price'] ?? '-') ?></td>
-                        <td class="p-2"><?= $u['created_at'] ? date('d M Y', strtotime($u['created_at'])) : '-' ?></td>
-                        <td class="p-2 font-semibold
+                        <td class="p-2 border"><?= $index+1 ?></td>
+                        <td class="p-2 border"><?= $u['id'] ?></td>
+                        <td class="p-2 border"><?= htmlspecialchars($u['name']) ?></td>
+                        <td class="p-2 border"><?= htmlspecialchars($u['email']) ?></td>
+                        <td class="p-2 border"><?= htmlspecialchars($u['phone'] ?? '-') ?></td>
+                        <td class="p-2 border"><?= htmlspecialchars($u['price'] ?? '-') ?></td>
+                        <td class="p-2 border"><?= $u['created_at'] ? date('d M Y', strtotime($u['created_at'])) : '-' ?></td>
+                        <td class="p-2 border font-semibold
                             <?php 
                                 if ($u['payment_status'] === 'paid') echo 'text-green-600';
                                 elseif ($u['payment_status'] === 'pending') echo 'text-yellow-600';

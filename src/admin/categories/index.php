@@ -49,6 +49,8 @@
                    class="block p-3 rounded <?= $currentPage=='dashboard'?'bg-blue-800':'hover:bg-blue-800' ?>">
                     Dashboard
                 </a>
+
+                <a href="../customers/index.php" class="block p-3 rounded hover:bg-blue-800">Customers</a>
     
                 <a href="../products/index.php"
                    class="block p-3 rounded <?= $currentPage=='products'?'bg-blue-800':'hover:bg-blue-800' ?>">

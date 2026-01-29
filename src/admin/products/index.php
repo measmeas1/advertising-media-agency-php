@@ -42,6 +42,7 @@ $categories = $catStmt->fetchAll(PDO::FETCH_ASSOC);
         <h1 class="text-2xl font-bold mb-8">LOGO</h1>
         <nav class="space-y-4">
             <a href="../dashboard.php" class="block hover:bg-blue-800 p-3 rounded">Dashboard</a>
+            <a href="../customers/index.php" class="block p-3 rounded hover:bg-blue-800">Customers</a>
             <a href="index.php" class="block bg-blue-800 p-3 rounded">Products</a>
             <a href="../categories/index.php" class="block hover:bg-blue-800 p-3 rounded">Categories</a>
             <a href="../bookings/index.php" class="block hover:bg-blue-800 p-3 rounded">Bookings</a>
@@ -50,12 +51,12 @@ $categories = $catStmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main class="flex-1 p-6">
         <?php include '../header.php'; ?>
+
+        <div class="bg-white p-6 rounded shadow overflow-x-auto">
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold">Products List</h2>
             <button onclick="window.location.href='create.php'" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">+ Add Product</button>
         </div>
-
-        <div class="bg-white p-6 rounded shadow overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-blue-500 text-white">
