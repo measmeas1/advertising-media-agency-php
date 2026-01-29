@@ -1,4 +1,5 @@
 <?php
+    include('../session.php');
     $pdo = require_once __DIR__ . '/../../config/db.php';
 
     // ADD CATEGORY
@@ -43,9 +44,12 @@
     <div class="flex min-h-screen">
         <!-- SIDEBAR -->
         <aside class="w-64 bg-blue-900 text-white p-5">
-            <h1 class="text-2xl font-bold mb-8">LOGO</h1>
+            <div class="flex justify-left items-center mb-6">
+                <img src="../../assets/images/logo.png" class="w-10 h-10">
+                <h1 class="text-2xl font-bold">Advertising</h1>
+            </div>
             <nav class="space-y-4">
-                <a href="../dashboard.php"
+                <a href="../dashboard/index.php"
                    class="block p-3 rounded <?= $currentPage=='dashboard'?'bg-blue-800':'hover:bg-blue-800' ?>">
                     Dashboard
                 </a>
@@ -72,17 +76,15 @@
         <!-- MAIN CONTENT -->
         <main class="flex-1 p-6">
             <?php include '../header.php'; ?>
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-semibold">Categories</h2>
-    
-                <button onclick="openModal()"
-                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    + Add Category
-                </button>
-            </div>
-    
             <div class="bg-white p-6 rounded shadow">
                 <table class="w-full text-left border-collapse">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-semibold">Categories</h2>
+                        <button onclick="openModal()"
+                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            + Add Category
+                         </button>
+                    </div>
                     <thead>
                         <tr class="bg-blue-500 text-white">
                             <th class="p-2 border">ID</th>

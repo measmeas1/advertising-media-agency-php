@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['login_user'] = $user['name'];
             $_SESSION['user_id'] = $user['id'];
 
-            header('Location: dashboard.php');
+            header('Location: dashboard/index.php');
             exit;
         } else {
             $error = "Your Login Email or Password is invalid";

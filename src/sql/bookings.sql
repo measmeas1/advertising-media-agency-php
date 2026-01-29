@@ -13,14 +13,3 @@ CREATE TABLE bookings (
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
-ALTER TABLE bookings
-DROP COLUMN status;
-ADD COLUMN user_id INT NOT NULL AFTER product_id,
-ADD COLUMN code VARCHAR(255) NOT NULL AFTER user_id,
-ADD COLUMN name VARCHAR(255) NOT NULL AFTER code,
-ADD COLUMN email VARCHAR(255) NOT NULL AFTER name,
-ADD COLUMN price DECIMAL(10, 2) NOT NULL AFTER phone,
-ADD COLUMN payment_status ENUM('pending','paid','cancelled') 
-    DEFAULT 'pending' AFTER message;
-ADD FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;

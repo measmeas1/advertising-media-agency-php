@@ -1,5 +1,6 @@
 <?php
 $pdo = require_once __DIR__ . '/../../config/db.php';
+include('../session.php');
 
 // Fetch categories for the dropdown
 $catStmt = $pdo->prepare("SELECT id, name FROM categories ORDER BY name ASC");

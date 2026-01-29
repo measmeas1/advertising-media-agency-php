@@ -1,4 +1,5 @@
 <?php
+include('../session.php');
 $pdo = require_once __DIR__ . '/../../config/db.php';
 
 // DELETE PRODUCT
@@ -39,9 +40,12 @@ $categories = $catStmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="flex min-h-screen">
     <!-- SIDEBAR -->
     <aside class="w-64 bg-blue-900 text-white p-5">
-        <h1 class="text-2xl font-bold mb-8">LOGO</h1>
+        <div class="flex justify-left items-center mb-6">
+            <img src="../../assets/images/logo.png" class="w-10 h-10">
+            <h1 class="text-2xl font-bold">Advertising</h1>
+        </div>
         <nav class="space-y-4">
-            <a href="../dashboard.php" class="block hover:bg-blue-800 p-3 rounded">Dashboard</a>
+            <a href="../dashboard/index.php" class="block hover:bg-blue-800 p-3 rounded">Dashboard</a>
             <a href="../customers/index.php" class="block p-3 rounded hover:bg-blue-800">Customers</a>
             <a href="index.php" class="block bg-blue-800 p-3 rounded">Products</a>
             <a href="../categories/index.php" class="block hover:bg-blue-800 p-3 rounded">Categories</a>

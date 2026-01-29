@@ -1,6 +1,6 @@
 <?php
-include('session.php');
-$pdo = require_once __DIR__ . '/../config/db.php';
+include('../session.php');
+$pdo = require_once __DIR__ . '/../../config/db.php';
 
 /* =========================
    DASHBOARD STAT QUERIES
@@ -62,13 +62,16 @@ $users = $userListStmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- SIDEBAR -->
     <aside class="w-64 flex-shrink-0 bg-blue-900 text-white p-5 flex flex-col">
-        <h1 class="text-2xl font-bold mb-8">LOGO</h1>
+        <div class="flex justify-left items-center mb-6">
+            <img src="../../assets/images/logo.png" class="w-10 h-10">
+            <h1 class="text-2xl font-bold">Advertising</h1>
+        </div>
         <nav class="space-y-4 flex-1">
-            <a href="dashboard.php" class="block p-3 rounded hover:bg-blue-800 bg-blue-800">Dashboard</a>
-            <a href="customers/index.php" class="block p-3 rounded hover:bg-blue-800">Customers</a>
-            <a href="products/index.php" class="block p-3 rounded hover:bg-blue-800">Products</a>
-            <a href="categories/index.php" class="block p-3 rounded hover:bg-blue-800">Categories</a>
-            <a href="bookings/index.php" class="block p-3 rounded hover:bg-blue-800">Bookings</a>
+            <a href="index.php" class="block p-3 rounded hover:bg-blue-800 bg-blue-800">Dashboard</a>
+            <a href="../customers/index.php" class="block p-3 rounded hover:bg-blue-800">Customers</a>
+            <a href="../products/index.php" class="block p-3 rounded hover:bg-blue-800">Products</a>
+            <a href="../categories/index.php" class="block p-3 rounded hover:bg-blue-800">Categories</a>
+            <a href="../bookings/index.php" class="block p-3 rounded hover:bg-blue-800">Bookings</a>
         </nav>
     </aside>
 
@@ -76,7 +79,7 @@ $users = $userListStmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="flex-1 flex flex-col p-6">
 
         <!-- HEADER (inside main content, next to sidebar) -->
-      <?php include 'header.php'?>
+      <?php include '../header.php'?>
 
         <!-- STATS -->
         <h2 class="text-2xl font-semibold mb-6">Dashboard</h2>
