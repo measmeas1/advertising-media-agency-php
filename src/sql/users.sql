@@ -8,5 +8,3 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE users
-MODIFY role ENUM('admin','user') DEFAULT 'user';
