@@ -69,7 +69,7 @@
     
         <!-- MAIN CONTENT -->
         <main class="flex-1 p-6">
-    
+            <?php include '../header.php'; ?>
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-semibold">Categories</h2>
     

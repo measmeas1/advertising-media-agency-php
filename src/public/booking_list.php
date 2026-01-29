@@ -67,7 +67,7 @@ $bookings = $stmt->fetchAll();
             </p>
 
             <span class="text-xs px-3 py-1 rounded-full mt-3 inline-block
-              <?= $b['payment_status'] === 'Paid' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' ?>">
+              <?= $b['payment_status'] === 'paid' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' ?>">
               <?= $b['payment_status'] ?>
             </span>
           </div>

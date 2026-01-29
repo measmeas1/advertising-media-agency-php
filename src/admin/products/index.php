@@ -32,6 +32,7 @@ $categories = $catStmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Products</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="../../assets/images/logo.png"> 
 </head>
 <body class="bg-gray-100 font-sans">
 
@@ -48,6 +49,7 @@ $categories = $catStmt->fetchAll(PDO::FETCH_ASSOC);
     </aside>
 
     <main class="flex-1 p-6">
+        <?php include '../header.php'; ?>
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold">Products List</h2>
             <button onclick="window.location.href='create.php'" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">+ Add Product</button>

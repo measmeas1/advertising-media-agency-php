@@ -28,6 +28,7 @@
             bookings.name,
             bookings.email,
             bookings.phone,
+            bookings.price,
             bookings.message,
             bookings.payment_status
         FROM bookings
@@ -66,6 +67,7 @@
 
     <!-- MAIN CONTENT -->
     <main class="flex-1 p-6">
+        <?php include '../header.php'; ?>
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold">Bookings List</h2>
         </div>
@@ -79,6 +81,7 @@
                         <th class="p-2 border">Name</th>
                         <th class="p-2 border">Email</th>
                         <th class="p-2 border">Phone</th>
+                        <th class="p-2 border">Price</th>
                         <th class="p-2 border">Message</th>
                         <th class="p-2 border">Status</th>
                         <th class="p-2 border">Action</th>
@@ -106,6 +109,10 @@
                         </td>
                     
                         <td class="p-2 border">
+                            <?= htmlspecialchars($booking['price']) ?>$
+                        </td>
+                    
+                        <td class="p-2 border">
                             <?= htmlspecialchars($booking['message']) ?>
                         </td>
                     
@@ -118,16 +125,14 @@
                                         class="px-2 py-1 rounded text-sm border
                                         <?php
                                             echo match ($booking['payment_status']) {
-                                                'Paid' => 'bg-green-100 text-green-700',
-                                                'Partial' => 'bg-yellow-100 text-yellow-700',
-                                                'Cancelled' => 'bg-red-100 text-red-700',
-                                                default => 'bg-gray-100 text-gray-700',
+                                                'paid' => 'bg-green-100 text-green-700',
+                                                'pending' => 'bg-yellow-100 text-yellow-700',
+                                                default => 'bg-red-100 text-red-700',
                                             };
                                         ?>">
-                                    <option value="Pending" <?= $booking['payment_status']=='Pending'?'selected':'' ?>>Pending</option>
-                                    <option value="Paid" <?= $booking['payment_status']=='Paid'?'selected':'' ?>>Paid</option>
-                                    <option value="Partial" <?= $booking['payment_status']=='Partial'?'selected':'' ?>>Partial</option>
-                                    <option value="Cancelled" <?= $booking['payment_status']=='Cancelled'?'selected':'' ?>>Cancelled</option>
+                                    <option value="pending" <?= $booking['payment_status']=='pending'?'selected':'' ?>>Pending</option>
+                                    <option value="paid" <?= $booking['payment_status']=='paid'?'selected':'' ?>>Paid</option>
+                                    <option value="cancelled" <?= $booking['payment_status']=='cancelled'?'selected':'' ?>>Cancelled</option>
                                 </select>
                             </form>
                         </td>

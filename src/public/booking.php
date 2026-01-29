@@ -8,7 +8,11 @@
   }
 
   $product_id = $_GET['id'];
-
+  
+  $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
+  $stmt->execute([$product_id]);
+  $product = $stmt->fetch();
+  
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $user = $_SESSION['user'];
@@ -18,14 +22,15 @@
     $email   = $user['email'];
 
     $phone   = $_POST['phone'];
+    $price = $product['price'];
     $message = $_POST['message'];
 
     $code = 'BK-' . strtoupper(uniqid());
 
     $stmt = $pdo->prepare("
         INSERT INTO bookings 
-        (product_id, user_id, code, name, email, phone, message)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        (product_id, user_id, code, name, email, phone, price, message)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $stmt->execute([
@@ -35,6 +40,7 @@
         $name,
         $email,
         $phone,
+        $price,
         $message
     ]);
 
@@ -42,10 +48,6 @@
     header("Location: index.php");
     exit;
   }
-
-  $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
-  $stmt->execute([$product_id]);
-  $product = $stmt->fetch();
 ?>
 
 <!DOCTYPE html>

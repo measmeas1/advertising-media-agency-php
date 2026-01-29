@@ -53,6 +53,7 @@ if (!$booking) {
     <title>Booking #<?= $booking['id'] ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="../../assets/images/logo.png">
 </head>
 
 <body class="bg-gray-100 font-sans">
@@ -118,16 +119,14 @@ if (!$booking) {
                             class="w-full px-3 py-2 rounded border
                             <?php
                                 echo match ($booking['payment_status']) {
-                                    'Paid' => 'bg-green-100 text-green-700',
-                                    'Partial' => 'bg-yellow-100 text-yellow-700',
-                                    'Cancelled' => 'bg-red-100 text-red-700',
-                                    default => 'bg-gray-100 text-gray-700',
+                                    'paid' => 'bg-green-100 text-green-700',
+                                    'pending' => 'bg-yellow-100 text-yellow-700',
+                                    default => 'bg-red-100 text-red-700',
                                 };
                             ?>">
-                        <option value="Pending" <?= $booking['payment_status']=='Pending'?'selected':'' ?>>Pending</option>
-                        <option value="Paid" <?= $booking['payment_status']=='Paid'?'selected':'' ?>>Paid</option>
-                        <option value="Partial" <?= $booking['payment_status']=='Partial'?'selected':'' ?>>Partial</option>
-                        <option value="Cancelled" <?= $booking['payment_status']=='Cancelled'?'selected':'' ?>>Cancelled</option>
+                        <option value="pending" <?= $booking['payment_status']=='pending'?'selected':'' ?>>Pending</option>
+                        <option value="paid" <?= $booking['payment_status']=='paid'?'selected':'' ?>>Paid</option>
+                        <option value="cancelled" <?= $booking['payment_status']=='cancelled'?'selected':'' ?>>Cancelled</option>
                     </select>
                 </form>
             </div>

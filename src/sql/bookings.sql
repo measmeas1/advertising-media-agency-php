@@ -6,8 +6,9 @@ CREATE TABLE bookings (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
     message TEXT,
-    payment_status ENUM('Pending','Paid','Partial','Cancelled') DEFAULT 'Pending',
+    payment_status ENUM('pending','paid','cancelled') DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -19,6 +20,7 @@ ADD COLUMN user_id INT NOT NULL AFTER product_id,
 ADD COLUMN code VARCHAR(255) NOT NULL AFTER user_id,
 ADD COLUMN name VARCHAR(255) NOT NULL AFTER code,
 ADD COLUMN email VARCHAR(255) NOT NULL AFTER name,
-ADD COLUMN payment_status ENUM('Pending','Paid','Partial','Cancelled') 
-    DEFAULT 'Pending' AFTER message;
+ADD COLUMN price DECIMAL(10, 2) NOT NULL AFTER phone,
+ADD COLUMN payment_status ENUM('pending','paid','cancelled') 
+    DEFAULT 'pending' AFTER message;
 ADD FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
