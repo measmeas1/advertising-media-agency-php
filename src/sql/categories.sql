@@ -4,3 +4,11 @@ CREATE TABLE categories (
     status ENUM('active','inactive') DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO categories (name, status) VALUES
+('Social Media Marketing', 'active'),
+('Content Creation', 'active'),
+('Brand Strategy', 'active'),
+('Digital Marketing', 'active'),
+('Video Production', 'active'),
+('PR & Events', 'active');

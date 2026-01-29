@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['login_user'] = $user['name'];
             $_SESSION['user_id'] = $user['id'];
 
-            header('Location: dashboard.php');
+            header('Location: dashboard/index.php');
             exit;
         } else {
             $error = "Your Login Email or Password is invalid";
@@ -36,9 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Admin Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Tailwind CSS -->
-    <link href="../assets/css/tailwind.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
